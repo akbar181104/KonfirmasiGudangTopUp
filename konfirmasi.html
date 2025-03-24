@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pembayaran</title>
+    <link rel="stylesheet" href="konfirmasi.css">
+</head>
+<body>
+    <div class="confirmation-container">
+        <h2>Pembayaran Berhasil ✅</h2>
+        <p>Terima kasih atas pembelian Anda.</p>
+
+        <div class="order-details">
+            <h3>Detail Pembelian:</h3>
+            <p><strong>User ID:</strong> <span id="user-id"></span></p>
+            <p><strong>Zone ID:</strong> <span id="zone-id"></span></p>
+            <!-- <p><strong>Paket:</strong> <span id="package"></span></p> -->
+            <p><strong>Total Harga:</strong> <span id="total-price"></span></p>
+        </div>
+
+        <button onclick="closeTab()">Tutup</button>
+    </div>
+
+    <script>
+        // Fungsi untuk mendapatkan parameter dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Ambil data dari URL
+        document.getElementById("user-id").textContent = getQueryParam("user");
+        document.getElementById("zone-id").textContent = getQueryParam("zone");
+        // document.getElementById("package").textContent = getQueryParam("package");
+        document.getElementById("total-price").textContent = "Rp. " + getQueryParam("price");
+
+        // Kirim pesan ke halaman checkout
+        window.opener?.postMessage("success", "*");
+
+        function closeTab() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
