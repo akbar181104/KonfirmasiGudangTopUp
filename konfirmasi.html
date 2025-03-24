@@ -35,9 +35,6 @@
         // document.getElementById("package").textContent = getQueryParam("package");
         document.getElementById("total-price").textContent = "Rp. " + getQueryParam("price");
 
-        // Kirim pesan ke halaman checkout
-        window.opener?.postMessage("success", "*");
-
         function closeTab() {
             window.close();
         }
